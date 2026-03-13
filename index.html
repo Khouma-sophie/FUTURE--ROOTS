@@ -1,6007 +1,1222 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="MtscOffice 7.4.2.3 (Windows)"/>
-	<meta name="created" content="2026-03-13T22:38:36.636000000"/>
-	<meta name="changed" content="2026-03-13T22:43:53.697000000"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Future Roots – Baobab & Fonio direkt aus Kédougou</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:   #1E120A;
+    --terra:  #C4622D;
+    --leaf:   #3D6B4A;
+    --gold:   #D4A853;
+    --sand:   #E8D5B0;
+    --cream:  #FAF6F0;
+    --sky:    #8FBAB0;
+    --white:  #FFFFFF;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--dark);
+    color: var(--sand);
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(30,18,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,168,83,0.15);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--leaf);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--sand);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.3s, color 0.3s;
+  }
+
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(61,107,74,0.2);
+    border: 1px solid rgba(61,107,74,0.4);
+    color: var(--sky);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 2rem;
+    margin-bottom: 2rem;
+    width: fit-content;
+    animation: fadeUp 0.8s ease forwards;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--sky);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+
+  .hero-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    opacity: 0.85;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--terra);
+    color: var(--white);
+    padding: 0.85rem 2rem;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #a84d22; transform: translateY(-2px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(212,168,83,0.4);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(212,168,83,0.08);
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 3rem 3rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-card-main {
+    background: var(--leaf);
+    padding: 2.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-card-main::before {
+    content: '';
+    position: absolute;
+    top: -8px; left: -8px;
+    right: 8px; bottom: 8px;
+    border: 1px solid rgba(212,168,83,0.3);
+    pointer-events: none;
+  }
+
+  .hero-card-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-card-quote em { color: var(--gold); font-style: normal; }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .stat-box {
+    background: rgba(30,18,10,0.4);
+    padding: 1rem;
+    text-align: center;
+    transition: background 0.3s;
+  }
+
+  .stat-box:hover { background: rgba(30,18,10,0.7); }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--sand);
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-card-floating {
+    position: absolute;
+    bottom: -2rem;
+    right: -2rem;
+    background: var(--dark);
+    border: 1px solid rgba(212,168,83,0.25);
+    padding: 1.2rem 1.5rem;
+    z-index: 3;
+    width: 200px;
+  }
+
+  .floating-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .floating-text {
+    font-size: 0.85rem;
+    color: var(--sand);
+    line-height: 1.4;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.4;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  .scroll-indicator span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; z-index: 1; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  .problem {
+    background: var(--cream);
+    color: var(--dark);
+    padding: 6rem 4rem;
+  }
+
+  .problem .section-title { color: var(--dark); }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  .problem-left p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 1.2rem;
+  }
+
+  .problem-left p strong { color: var(--terra); }
+
+  .problem-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .problem-card {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.4rem;
+    background: var(--white);
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .problem-card:hover {
+    border-left-color: var(--terra);
+    transform: translateX(4px);
+  }
+
+  .problem-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .problem-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .problem-card p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #666;
+    margin: 0;
+  }
+
+  /* ── SOLUTION SECTION ── */
+  .solution {
+    background: var(--dark);
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(61,107,74,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .solution-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .solution-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .feature-row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+
+  .feature-row:hover {
+    background: rgba(61,107,74,0.1);
+    border-color: rgba(61,107,74,0.3);
+  }
+
+  .feature-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .feature-row h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .feature-row p {
+    font-size: 0.82rem;
+    color: var(--sand);
+    opacity: 0.7;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .solution-right {
+    position: relative;
+  }
+
+  .solution-quote-box {
+    background: var(--leaf);
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .solution-quote-box::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; right: -10px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(212,168,83,0.2);
+    pointer-events: none;
+  }
+
+  .big-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    opacity: 0.3;
+    line-height: 1;
+    margin-bottom: -1rem;
+  }
+
+  .solution-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .solution-quote-author {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── MODEL SECTION ── */
+  .model {
+    background: var(--cream);
+    color: var(--dark);
+    padding: 6rem 4rem;
+  }
+
+  .model .section-title { color: var(--dark); }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .model-card {
+    background: var(--white);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .model-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+  }
+
+  .model-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+
+  .model-card.c1::before { background: var(--leaf); }
+  .model-card.c2::before { background: var(--terra); }
+  .model-card.c3::before { background: var(--gold); }
+
+  .model-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.08;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+
+  .model-card.c1 .model-num { color: var(--leaf); }
+  .model-card.c2 .model-num { color: var(--terra); }
+  .model-card.c3 .model-num { color: var(--gold); }
+
+  .model-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .model-card.c1 h3 { color: var(--leaf); }
+  .model-card.c2 h3 { color: var(--terra); }
+  .model-card.c3 h3 { color: var(--gold); }
+
+  .model-card .phase {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #999;
+    margin-bottom: 1rem;
+  }
+
+  .model-card p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+
+  .model-margin {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    display: inline-block;
+  }
+
+  .model-card.c1 .model-margin { background: rgba(61,107,74,0.1); color: var(--leaf); }
+  .model-card.c2 .model-margin { background: rgba(196,98,45,0.1); color: var(--terra); }
+  .model-card.c3 .model-margin { background: rgba(212,168,83,0.1); color: #a07830; }
+
+  /* ── SDGs ── */
+  .sdgs {
+    background: var(--dark);
+    padding: 5rem 4rem;
+  }
+
+  .sdg-row {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .sdg-card {
+    flex: 1;
+    min-width: 200px;
+    padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .sdg-card:hover { border-color: var(--gold); }
+
+  .sdg-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .sdg-card h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .sdg-card p {
+    font-size: 0.8rem;
+    color: var(--sand);
+    opacity: 0.7;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── STORY SECTION ── */
+  .story {
+    background: var(--leaf);
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(30,18,10,0.3) 0%, transparent 70%);
+  }
+
+  .story-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story .section-tag { color: var(--gold); text-align: center; }
+
+  .story .section-title {
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .story-text {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: rgba(232,213,176,0.85);
+    margin: 2rem 0;
+  }
+
+  .story-text strong { color: var(--white); font-weight: 600; }
+
+  .story-highlight {
+    background: rgba(30,18,10,0.3);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    text-align: left;
+  }
+
+  .story-highlight p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── CONTACT / CTA ── */
+  .cta-section {
+    background: var(--dark);
+    padding: 6rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(61,107,74,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-title {
+    color: var(--white);
+    max-width: 600px;
+    margin: 0 auto 1rem;
+  }
+
+  .cta-section .section-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .cta-sub {
+    font-size: 1rem;
+    color: var(--sand);
+    opacity: 0.7;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    text-align: center;
+  }
+
+  .contact-item .label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-item .value {
+    font-size: 0.95rem;
+    color: var(--sand);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(0,0,0,0.5);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  footer p {
+    font-size: 0.75rem;
+    color: var(--sand);
+    opacity: 0.4;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,168,83,0.3), transparent);
+    margin: 0 4rem;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 7rem 1.5rem 2rem; }
+    .hero-right { padding: 2rem 1.5rem 4rem; }
+    .hero-card-floating { display: none; }
+    .problem, .solution, .model, .sdgs, .story, .cta-section { padding: 4rem 1.5rem; }
+    .problem-grid, .solution-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .model-grid { grid-template-columns: 1fr; }
+    .sdg-row { flex-direction: column; }
+    footer { padding: 1.5rem; flex-direction: column; text-align: center; }
+    .divider { margin: 0 1.5rem; }
+    .contact-info { gap: 2rem; }
+  }
+</style>
 </head>
-<body lang="de-DE" dir="ltr"><p style="margin-bottom: 0cm"><br/>
-
-</p>
-<table width="803" cellpadding="2" cellspacing="0">
-	<col width="799"/>
-
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!DOCTYPE
-			html&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;html
-			lang=&quot;de&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;head&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;meta
-			charset=&quot;UTF-8&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;meta
-			name=&quot;viewport&quot; content=&quot;width=device-width,
-			initial-scale=1.0&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;title&gt;Future
-			Roots – Baobab &amp; Fonio direkt aus Kédougou&lt;/title&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;link
-			href=&quot;<a href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Jost:wght@300;400;500;600&amp;display=swap" target="_blank">https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&amp;family=Jost:wght@300;400;500;600&amp;display=swap</a>&quot;
-			rel=&quot;stylesheet&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;style&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>:root {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--dark:
-			#1E120A;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--terra:
-			#C4622D;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--leaf:
-			#3D6B4A;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--gold:
-			#D4A853;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--sand:
-			#E8D5B0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--cream:
-			#FAF6F0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--sky:
-			#8FBAB0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>--white:
-			#FFFFFF;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>*, *::before,
-			*::after { box-sizing: border-box; margin: 0; padding: 0; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>html {
-			scroll-behavior: smooth; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>body {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Jost', sans-serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow-x:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			NOISE TEXTURE ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>body::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			fixed;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>inset: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background-image:
-			url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256'
-			xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter
-			id='noise'%3E%3CfeTurbulence type='fractalNoise'
-			baseFrequency='0.9' numOctaves='4'
-			stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25'
-			height='100%25' filter='url(%23noise)'
-			opacity='0.03'/%3E%3C/svg%3E&quot;);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>pointer-events:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ── NAV
-			── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>nav {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			fixed;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>top: 0; left:
-			0; right: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 100;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			space-between;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.2rem 3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(30,18,10,0.92);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>backdrop-filter:
-			blur(12px);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-bottom:
-			1px solid rgba(212,168,83,0.15);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-logo {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 0.6rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-decoration:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-logo-icon
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 32px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>height: 32px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--leaf);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-radius:
-			50%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			16px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-logo-text
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.05em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-links {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>list-style:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-links a
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-decoration:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.8rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			500;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.1em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			opacity 0.3s, color 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-links
-			a:hover { opacity: 1; color: var(--gold); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			HERO ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>min-height:
-			100vh;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			grid;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>grid-template-columns:
-			1fr 1fr;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-left {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-direction:
-			column;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 8rem
-			3rem 4rem 4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 2;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-tag {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			inline-flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 0.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(61,107,74,0.2);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(61,107,74,0.4);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sky);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.7rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.15em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			0.4rem 0.9rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-radius:
-			2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width:
-			fit-content;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 0.8s ease forwards;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-tag::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 6px;
-			height: 6px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--sky);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-radius:
-			50%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			pulse 2s infinite;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>@keyframes
-			pulse {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>0%, 100% {
-			opacity: 1; transform: scale(1); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>50% {
-			opacity: 0.4; transform: scale(0.8); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-title {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			clamp(3rem, 5vw, 5rem);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			900;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 0.8s 0.1s ease both;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-title
-			em {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-style:
-			italic;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-sub {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			300;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>max-width:
-			480px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			2.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity:
-			0.85;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 0.8s 0.2s ease both;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-cta {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-wrap:
-			wrap;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 0.8s 0.3s ease both;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.btn-primary
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--terra);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			0.85rem 2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Jost', sans-serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.85rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.08em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>cursor:
-			pointer;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-decoration:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			background 0.3s, transform 0.2s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			inline-block;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.btn-primary:hover
-			{ background: #a84d22; transform: translateY(-2px); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.btn-secondary
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			transparent;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			0.85rem 2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(212,168,83,0.4);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Jost', sans-serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.85rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.08em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>cursor:
-			pointer;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-decoration:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			border-color 0.3s, background 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			inline-block;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.btn-secondary:hover
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(212,168,83,0.08);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-right {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			3rem 3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-visual
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 100%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>max-width:
-			440px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 0.8s 0.4s ease both;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-main
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--leaf);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			2.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 2;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-main::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>top: -8px;
-			left: -8px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>right: 8px;
-			bottom: 8px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(212,168,83,0.3);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>pointer-events:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-quote
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-style:
-			italic;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.5;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-quote
-			em { color: var(--gold); font-style: normal; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-stats {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			grid;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>grid-template-columns:
-			1fr 1fr;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.stat-box {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(30,18,10,0.4);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-align:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			background 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.stat-box:hover
-			{ background: rgba(30,18,10,0.7); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.stat-num {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.8rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			block;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.stat-label {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.7rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.08em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-floating
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>bottom:
-			-2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>right: -2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(212,168,83,0.25);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.2rem 1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 3;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 200px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.floating-label
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.65rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.12em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--terra);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.floating-text
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.85rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.4;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			SCROLL INDICATOR ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.scroll-indicator
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>bottom: 2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>left: 50%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translateX(-50%);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-direction:
-			column;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 0.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.4;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			fadeUp 1s 1s ease both;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.scroll-indicator
-			span {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.65rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.15em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.scroll-line
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 1px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>height: 40px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			linear-gradient(to bottom, var(--gold), transparent);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>animation:
-			scrollPulse 2s infinite;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>@keyframes
-			scrollPulse {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>0% {
-			transform: scaleY(0); transform-origin: top; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>50% {
-			transform: scaleY(1); transform-origin: top; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>51% {
-			transform: scaleY(1); transform-origin: bottom; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>100% {
-			transform: scaleY(0); transform-origin: bottom; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			SECTION BASE ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>section {
-			position: relative; z-index: 1; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.section-tag
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.7rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.2em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--terra);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.section-title
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			clamp(2rem, 3.5vw, 3rem);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.15;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			PROBLEM SECTION ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--cream);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem
-			.section-title { color: var(--dark); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-grid
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			grid;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>grid-template-columns:
-			1fr 1fr;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			start;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-left
-			p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.05rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.8;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color: #444;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-left
-			p strong { color: var(--terra); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-cards
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-direction:
-			column;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-card
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-left:
-			3px solid transparent;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			border-color 0.3s, transform 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>box-shadow: 0
-			2px 12px rgba(0,0,0,0.06);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-card:hover
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-left-color:
-			var(--terra);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translateX(4px);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-card-icon
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 44px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>height: 44px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-radius:
-			50%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-shrink:
-			0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-card
-			h4 {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-card
-			p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.85rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.6;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color: #666;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			SOLUTION SECTION ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>top: -200px;
-			right: -200px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 600px;
-			height: 600px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			radial-gradient(circle, rgba(61,107,74,0.15) 0%, transparent 70%);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>pointer-events:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-grid
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			grid;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>grid-template-columns:
-			1fr 1fr;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-features
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-direction:
-			column;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.feature-row
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			flex-start;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(255,255,255,0.03);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(255,255,255,0.06);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			background 0.3s, border-color 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>cursor:
-			default;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.feature-row:hover
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(61,107,74,0.1);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-color:
-			rgba(61,107,74,0.3);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.feature-icon
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-shrink:
-			0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			2px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.feature-row
-			h4 {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.9rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.02em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.feature-row
-			p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.82rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.5;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-right
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-quote-box
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--leaf);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			2.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-quote-box::after
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>bottom:
-			-10px; right: -10px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 100%;
-			height: 100%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(212,168,83,0.2);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>pointer-events:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.big-quote {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.3;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			-1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-quote-text
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.15rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-style:
-			italic;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.solution-quote-author
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.75rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.12em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			MODEL SECTION ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--cream);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model
-			.section-title { color: var(--dark); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-grid {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			grid;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>grid-template-columns:
-			repeat(3, 1fr);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>box-shadow: 0
-			4px 20px rgba(0,0,0,0.06);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			transform 0.3s, box-shadow 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card:hover
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translateY(-4px);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>box-shadow: 0
-			12px 32px rgba(0,0,0,0.12);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>top: 0; left:
-			0; right: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>height: 3px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c1::before
-			{ background: var(--leaf); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c2::before
-			{ background: var(--terra); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c3::before
-			{ background: var(--gold); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-num {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			900;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity:
-			0.08;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			-0.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c1
-			.model-num { color: var(--leaf); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c2
-			.model-num { color: var(--terra); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c3
-			.model-num { color: var(--gold); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card
-			h3 {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c1
-			h3 { color: var(--leaf); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c2
-			h3 { color: var(--terra); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c3
-			h3 { color: var(--gold); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card
-			.phase {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.7rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.1em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color: #999;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card p
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.85rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color: #555;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-margin
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.75rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			0.3rem 0.7rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			inline-block;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c1
-			.model-margin { background: rgba(61,107,74,0.1); color:
-			var(--leaf); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c2
-			.model-margin { background: rgba(196,98,45,0.1); color:
-			var(--terra); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-card.c3
-			.model-margin { background: rgba(212,168,83,0.1); color: #a07830;
-			}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			SDGs ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdgs {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 5rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-row {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-wrap:
-			wrap;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-card {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex: 1;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>min-width:
-			200px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.8rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border: 1px
-			solid rgba(255,255,255,0.08);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			border-color 0.3s;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-card:hover
-			{ border-color: var(--gold); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-num {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			2.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			900;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-card h4
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.9rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-card p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.8rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.6;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			STORY SECTION ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--leaf);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>bottom:
-			-100px; left: -100px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 400px;
-			height: 400px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			radial-gradient(circle, rgba(30,18,10,0.3) 0%, transparent 70%);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story-inner
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>max-width:
-			800px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0
-			auto;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-align:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>z-index: 1;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story
-			.section-tag { color: var(--gold); text-align: center; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story
-			.section-title {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			clamp(2rem, 4vw, 3.5rem);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story-text {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.05rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.85;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			rgba(232,213,176,0.85);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 2rem
-			0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story-text
-			strong { color: var(--white); font-weight: 600; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story-highlight
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(30,18,10,0.3);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-left:
-			3px solid var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding:
-			1.5rem 2rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 2rem
-			0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-align:
-			left;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.story-highlight
-			p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1.1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-style:
-			italic;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.6;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			CONTACT / CTA ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.cta-section
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			var(--dark);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 6rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-align:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			relative;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>overflow:
-			hidden;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.cta-section::before
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>content: '';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>position:
-			absolute;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>top: 50%;
-			left: 50%;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translate(-50%, -50%);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>width: 800px;
-			height: 800px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			radial-gradient(circle, rgba(61,107,74,0.08) 0%, transparent 70%);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>pointer-events:
-			none;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.cta-section
-			.section-title {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--white);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>max-width:
-			600px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0
-			auto 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.cta-section
-			.section-title em {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-style:
-			italic;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.cta-sub {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>max-width:
-			500px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0
-			auto 2.5rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>line-height:
-			1.7;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.contact-info
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-top:
-			3rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-wrap:
-			wrap;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.contact-item
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-align:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.contact-item
-			.label {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.65rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>text-transform:
-			uppercase;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.15em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--terra);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			600;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin-bottom:
-			0.4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.contact-item
-			.value {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.95rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			FOOTER ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>footer {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			rgba(0,0,0,0.5);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>border-top:
-			1px solid rgba(255,255,255,0.06);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>padding: 2rem
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>display:
-			flex;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>justify-content:
-			space-between;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>align-items:
-			center;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>flex-wrap:
-			wrap;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>gap: 1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>footer
-			.footer-logo {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-family:
-			'Playfair Display', serif;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			1rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-weight:
-			700;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--gold);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>letter-spacing:
-			0.05em;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>footer p {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>font-size:
-			0.75rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>color:
-			var(--sand);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0.4;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			DIVIDER ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.divider {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>height: 1px;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>background:
-			linear-gradient(to right, transparent, rgba(212,168,83,0.3),
-			transparent);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>margin: 0
-			4rem;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			ANIMATIONS ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>@keyframes
-			fadeUp {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>from {
-			opacity: 0; transform: translateY(20px); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>to { opacity:
-			1; transform: translateY(0); }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.reveal {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 0;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translateY(24px);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transition:
-			opacity 0.7s ease, transform 0.7s ease;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.reveal.visible
-			{</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>opacity: 1;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>transform:
-			translateY(0);</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>/* ──
-			RESPONSIVE ── */</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>@media
-			(max-width: 900px) {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>nav {
-			padding: 1rem 1.5rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.nav-links {
-			display: none; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero {
-			grid-template-columns: 1fr; min-height: auto; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-left {
-			padding: 7rem 1.5rem 2rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-right {
-			padding: 2rem 1.5rem 4rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.hero-card-floating
-			{ display: none; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem,
-			.solution, .model, .sdgs, .story, .cta-section { padding: 4rem
-			1.5rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.problem-grid,
-			.solution-grid { grid-template-columns: 1fr; gap: 2rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.model-grid {
-			grid-template-columns: 1fr; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.sdg-row {
-			flex-direction: column; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>footer {
-			padding: 1.5rem; flex-direction: column; text-align: center; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.divider {
-			margin: 0 1.5rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>.contact-info
-			{ gap: 2rem; }</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/style&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/head&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;body&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- NAV
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;nav&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;a
-			href=&quot;<a href="#" target="_blank">#</a>&quot;
-			class=&quot;nav-logo&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;nav-logo-icon&quot;&gt;🌱&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;nav-logo-text&quot;&gt;Future Roots&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/a&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;ul
-			class=&quot;nav-links&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;li&gt;&lt;a
-			href=&quot;<a href="#problem" target="_blank">#problem</a>&quot;&gt;Das
-			Problem&lt;/a&gt;&lt;/li&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;li&gt;&lt;a
-			href=&quot;<a href="#loesung" target="_blank">#loesung</a>&quot;&gt;Die
-			Lösung&lt;/a&gt;&lt;/li&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;li&gt;&lt;a
-			href=&quot;<a href="#modell" target="_blank">#modell</a>&quot;&gt;Modell&lt;/a&gt;&lt;/li&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;li&gt;&lt;a
-			href=&quot;<a href="#story" target="_blank">#story</a>&quot;&gt;Unsere
-			Geschichte&lt;/a&gt;&lt;/li&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;li&gt;&lt;a
-			href=&quot;<a href="#kontakt" target="_blank">#kontakt</a>&quot;&gt;Kontakt&lt;/a&gt;&lt;/li&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/ul&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/nav&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- HERO
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;hero&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-left&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-tag&quot;&gt;🌍 Kédougou, Senegal →
-			Deutschland&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h1
-			class=&quot;hero-title&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Baobab &amp;&lt;br&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Fonio –&lt;br&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;em&gt;direkt,&lt;br&gt;fair,
-			echt.&lt;/em&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/h1&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;hero-sub&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Future Roots
-			importiert Superfoods direkt aus Kédougou, Senegal –</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>mit dem
-			kürzesten Transportweg Europas, höchster Nährstoffdichte</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>und einer
-			Geschichte, die man sehen kann.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-cta&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;a
-			href=&quot;<a href="#kontakt" target="_blank">#kontakt</a>&quot;
-			class=&quot;btn-primary&quot;&gt;Kontakt aufnehmen&lt;/a&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;a
-			href=&quot;<a href="#story" target="_blank">#story</a>&quot;
-			class=&quot;btn-secondary&quot;&gt;Unsere Geschichte&lt;/a&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-right&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-visual&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-card-main&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;hero-card-quote&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>„Ich zeige
-			der Welt, dass</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;em&gt;Würde&lt;/em&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>ein
-			Geschäftsmodell ist.&quot;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-stats&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;stat-box&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-num&quot;&gt;14&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-label&quot;&gt;Tage Seeweg&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;stat-box&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-num&quot;&gt;70%&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-label&quot;&gt;weniger CO₂&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;stat-box&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-num&quot;&gt;3&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-label&quot;&gt;Dokumentarfilme&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;stat-box&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-num&quot;&gt;10+&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;stat-label&quot;&gt;Jahre Vertrauen&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;hero-card-floating&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;floating-label&quot;&gt;Unser Purpose&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;floating-text&quot;&gt;Jeder Mensch verdient
-			Sichtbarkeit und Würde.&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;scroll-indicator&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span&gt;Scroll&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;scroll-line&quot;&gt;&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!--
-			PROBLEM --&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;problem reveal&quot; id=&quot;problem&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Das Problem&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot;&gt;Drei Ungerechtigkeiten.&lt;br&gt;Eine
-			gemeinsame Wurzel.&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-grid&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-left&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Der deutsche
-			Superfood-Markt boomt – und ist dabei</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;strong&gt;ökologisch
-			und sozial widersprüchlich.&lt;/strong&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Chia, Quinoa
-			und Açaí reisen 40 Tage aus Übersee,</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>während
-			Westafrika vor der Haustür liegt.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Gleichzeitig
-			bleibt die &lt;strong&gt;Expertise der afrikanischen
-			Diaspora&lt;/strong&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>in
-			Deutschland ungenutzt – und Kleinbauern wie die Bedik</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>in Kédougou
-			ernten das Beste, verdienen aber das Wenigste.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Diese drei
-			Ungerechtigkeiten hängen zusammen.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Und sie
-			lassen sich &lt;strong&gt;gemeinsam lösen.&lt;/strong&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-cards&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card-icon&quot;
-			style=&quot;background:rgba(196,98,45,0.1)&quot;&gt;🌍&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4
-			style=&quot;color:var(--terra)&quot;&gt;Ökologisch&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Superfoods
-			reisen 40 Tage aus Übersee – während Westafrika nur 14 Tage
-			entfernt liegt. 60–70% mehr CO₂ pro kg.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card-icon&quot;
-			style=&quot;background:rgba(61,107,74,0.1)&quot;&gt;👥&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4
-			style=&quot;color:var(--leaf)&quot;&gt;Sozial&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Afrikanische
-			Diaspora in Deutschland: hochqualifiziert, aber Expertise bleibt
-			unsichtbar und ungenutzt.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;problem-card-icon&quot;
-			style=&quot;background:rgba(212,168,83,0.1)&quot;&gt;🤝&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4
-			style=&quot;color:#a07830&quot;&gt;Wirtschaftlich&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Die
-			Bedik in Kédougou ernten das Beste – und verdienen durch
-			Zwischenhändler das Wenigste.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;divider&quot;&gt;&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!--
-			SOLUTION --&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;solution reveal&quot; id=&quot;loesung&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Die Lösung&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot; style=&quot;color:var(--white)&quot;&gt;Future
-			Roots verbindet&lt;br&gt;alle drei Probleme.&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;solution-grid&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;solution-features&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-icon&quot;&gt;🌿&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Direktimport
-			aus Kédougou&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;10–14
-			Tage Seeweg statt 40. Vollreife Ernte direkt von den
-			Bedik-Bauernfamilien – kein Broker, kein Umweg.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-icon&quot;&gt;🎬&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;3
-			Dokumentarfilme als Beweis&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Authentisches
-			Storytelling das kein Wettbewerber kopieren kann. QR-Code auf
-			jeder Verpackung führt zum Film.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-icon&quot;&gt;🤝&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Diaspora-Partner
-			als Micro-Unternehmer&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Senegalesische
-			Diaspora in Deutschland sichert Qualität und Vertrieb – faire
-			Bezahlung, echte Integration.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-icon&quot;&gt;📚&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Wissenschaftliche
-			Grundlage&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Dissertation
-			über die Bedik-Gemeinschaft in Kédougou. Zehn Jahre persönliches
-			Vertrauen als Fundament.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;feature-icon&quot;&gt;🌱&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Zwei
-			Produkte – eine Mission&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Jahr
-			1: Baobab-Pulver. Jahr 2: Fonio – das älteste Getreide
-			Westafrikas. Glutenfrei, klimaresilient, einzigartig.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;solution-right&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;solution-quote-box&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;big-quote&quot;&gt;&quot;&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;solution-quote-text&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Kein
-			Wettbewerber auf der Welt hat das, was Future Roots mitbringt:</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>eine
-			Dissertation über die Bedik, drei Dokumentarfilme und</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>zehn Jahre
-			Migrationsarbeit als Fundament des Diaspora-Modells.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Unsere
-			Lieferkette ist kein Vertrag –</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>sie ist ein
-			Jahrzehnt persönlichen Vertrauens.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;solution-quote-author&quot;&gt;Future Roots –
-			Gründerin&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- MODEL
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;model reveal&quot; id=&quot;modell&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Geschäftsmodell&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot;&gt;Drei Einnahmesäulen.&lt;br&gt;Ein
-			faires System.&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-grid&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-card c1&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-num&quot;&gt;01&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h3&gt;B2B
-			Großhandel&lt;/h3&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;phase&quot;&gt;Jahr 1 – Priorität&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Bioläden,
-			Reformhäuser und Gastronomie mit Nachhaltigkeitsfokus. Jeder
-			B2B-Kunde erhält ein fertiges Marketing-Paket mit Film, Texten
-			und QR-Code.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;model-margin&quot;&gt;Marge 28–35%&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-card c2&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-num&quot;&gt;02&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h3&gt;D2C
-			Online-Shop&lt;/h3&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;phase&quot;&gt;Jahr 1–2 – Aufbau&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Abo-Modell,
-			Probierboxen und exklusiver Dokumentarfilm-Zugang für
-			Premium-Kunden. Community-Aufbau über Storytelling und Social
-			Media.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;model-margin&quot;&gt;Marge 45–55%&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-card c3&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;model-num&quot;&gt;03&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h3&gt;Impact-Lizenz&lt;/h3&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;phase&quot;&gt;Ab Jahr 3&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Das
-			Diaspora-Netzwerk als Dienstleistung für andere Unternehmen.
-			Future Roots wird zur Blaupause für faire afrikanisch-europäische
-			Handelsmodelle.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;span
-			class=&quot;model-margin&quot;&gt;Marge 60–70%&lt;/span&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- SDGs
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;sdgs reveal&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Nachhaltigkeitsziele&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot; style=&quot;color:var(--white)&quot;&gt;Drei
-			SDGs.&lt;br&gt;Ein Modell.&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-row&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-num&quot;&gt;SDG 8&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Menschenwürdige
-			Arbeit&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Faire
-			Preise für Bedik-Bauern und senegalesische Diaspora-Partner als
-			Micro-Unternehmer in Deutschland.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-num&quot;&gt;SDG 10&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Weniger
-			Ungleichheiten&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Wirtschaftliche
-			Integration von Menschen, die der Arbeitsmarkt übersieht – auf
-			beiden Seiten des Ozeans.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-card&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;sdg-num&quot;&gt;SDG 12&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h4&gt;Nachhaltiger
-			Konsum&lt;/h4&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Kürzester
-			Transportweg aller Anbieter: 10–14 Tage statt 40. 60–70%
-			weniger CO₂ pro Kilogramm.&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- STORY
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;story reveal&quot; id=&quot;story&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;story-inner&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Unsere Geschichte&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot;&gt;Mehr als ein
-			Unternehmen.&lt;br&gt;Eine Mission.&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;story-text&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Ich bin nicht
-			als Händlerin nach Kédougou gefahren.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Ich bin als
-			Forscherin gegangen – und habe geblieben,</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>weil
-			&lt;strong&gt;die Geschichte der Bedik erzählt werden
-			muss.&lt;/strong&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;story-highlight&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>„Ich habe
-			meine Dissertation über die Bedik in Kédougou geschrieben,</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>drei
-			Dokumentarfilme über ihre Kultur gedreht und zehn Jahre lang</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Menschen
-			begleitet, deren Expertise niemand sah.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Future Roots
-			ist meine Antwort auf beide Ungerechtigkeiten.&quot;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;story-text&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Diese
-			Verbindung – Forschung, Film, Migrationsarbeit – ist kein
-			Zufall.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Sie ist das
-			Fundament. &lt;strong&gt;Kein Wettbewerber kann das
-			kopieren.&lt;/strong&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;a
-			href=&quot;<a href="#kontakt" target="_blank">#kontakt</a>&quot;
-			class=&quot;btn-secondary&quot; style=&quot;margin-top:1rem&quot;&gt;Ins
-			Gespräch kommen →&lt;/a&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!-- CTA
-			--&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;section
-			class=&quot;cta-section reveal&quot; id=&quot;kontakt&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;section-tag&quot;&gt;Kontakt&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;h2
-			class=&quot;section-title&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Bereit
-			für&lt;br&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;em&gt;Beweisen,
-			nicht träumen?&lt;/em&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/h2&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p
-			class=&quot;cta-sub&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>Wir suchen
-			B2B-Partner, Impact-Investoren und Menschen,</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>die gemeinsam
-			beweisen wollen, dass Würde ein Geschäftsmodell ist.</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;a
-			href=&quot;<a href="mailto:hello@future-roots.de" target="_blank">mailto:hello@future-roots.de</a>&quot;
-			class=&quot;btn-primary&quot;&gt;hello@future-roots.de&lt;/a&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;contact-info&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;contact-item&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;label&quot;&gt;Startup&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;value&quot;&gt;Future Roots&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;contact-item&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;label&quot;&gt;Produkte&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;value&quot;&gt;Baobab &amp; Fonio&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;contact-item&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;label&quot;&gt;Herkunft&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;value&quot;&gt;Kédougou, Senegal&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;contact-item&quot;&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;label&quot;&gt;Markt&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;value&quot;&gt;Deutschland&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/section&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;!--
-			FOOTER --&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;footer&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;div
-			class=&quot;footer-logo&quot;&gt;Future Roots&lt;/div&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;Baobab
-			&amp; Fonio direkt aus Kédougou, Senegal&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;p&gt;©
-			2026 Future Roots&lt;/p&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/footer&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;script&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>// Scroll
-			reveal</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>const reveals
-			= document.querySelectorAll('.reveal');</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>const
-			observer = new IntersectionObserver((entries) =&gt; {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>entries.forEach(entry
-			=&gt; {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>if
-			(entry.isIntersecting) {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>entry.target.classList.add('visible');</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>});</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}, {
-			threshold: 0.1 });</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>reveals.forEach(el
-			=&gt; observer.observe(el));</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p><br/>
-
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>// Smooth nav
-			highlight</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>const
-			sections = document.querySelectorAll('section[id]');</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>const
-			navLinks = document.querySelectorAll('.nav-links a');</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>window.addEventListener('scroll',
-			() =&gt; {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>let current =
-			'';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>sections.forEach(section
-			=&gt; {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>if
-			(window.scrollY &gt;= section.offsetTop - 100) {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>current =
-			section.getAttribute('id');</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>}</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>});</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>navLinks.forEach(link
-			=&gt; {</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>link.style.opacity
-			= link.getAttribute('href') === '#' + current ? '1' : '0.7';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>link.style.color
-			= link.getAttribute('href') === '#' + current ? 'var(--gold)' :
-			'';</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>});</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>});</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/script&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/body&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"><p>&lt;/html&gt;</p>
-		</td>
-	</tr>
-	<tr>
-		<td width="799" style="border: none; padding: 0cm"></td>
-	</tr>
-</table>
-<p style="margin-bottom: 0cm"><br/>
-
-</p>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🌱</div>
+    <span class="nav-logo-text">Future Roots</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">Das Problem</a></li>
+    <li><a href="#loesung">Die Lösung</a></li>
+    <li><a href="#modell">Modell</a></li>
+    <li><a href="#story">Unsere Geschichte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">🌍 Kédougou, Senegal → Deutschland</div>
+    <h1 class="hero-title">
+      Baobab &<br>
+      Fonio –<br>
+      <em>direkt,<br>fair, echt.</em>
+    </h1>
+    <p class="hero-sub">
+      Future Roots importiert Superfoods direkt aus Kédougou, Senegal –
+      mit dem kürzesten Transportweg Europas, höchster Nährstoffdichte
+      und einer Geschichte, die man sehen kann.
+    </p>
+    <div class="hero-cta">
+      <a href="#kontakt" class="btn-primary">Kontakt aufnehmen</a>
+      <a href="#story" class="btn-secondary">Unsere Geschichte</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <p class="hero-card-quote">
+          „Ich zeige der Welt, dass
+          <em>Würde</em>
+          ein Geschäftsmodell ist."
+        </p>
+        <div class="hero-stats">
+          <div class="stat-box">
+            <span class="stat-num">14</span>
+            <span class="stat-label">Tage Seeweg</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">70%</span>
+            <span class="stat-label">weniger CO₂</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Dokumentarfilme</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">10+</span>
+            <span class="stat-label">Jahre Vertrauen</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-card-floating">
+        <div class="floating-label">Unser Purpose</div>
+        <div class="floating-text">Jeder Mensch verdient Sichtbarkeit und Würde.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem reveal" id="problem">
+  <div class="section-tag">Das Problem</div>
+  <h2 class="section-title">Drei Ungerechtigkeiten.<br>Eine gemeinsame Wurzel.</h2>
+  <div class="problem-grid">
+    <div class="problem-left">
+      <p>
+        Der deutsche Superfood-Markt boomt – und ist dabei
+        <strong>ökologisch und sozial widersprüchlich.</strong>
+        Chia, Quinoa und Açaí reisen 40 Tage aus Übersee,
+        während Westafrika vor der Haustür liegt.
+      </p>
+      <p>
+        Gleichzeitig bleibt die <strong>Expertise der afrikanischen Diaspora</strong>
+        in Deutschland ungenutzt – und Kleinbauern wie die Bedik
+        in Kédougou ernten das Beste, verdienen aber das Wenigste.
+      </p>
+      <p>
+        Diese drei Ungerechtigkeiten hängen zusammen.
+        Und sie lassen sich <strong>gemeinsam lösen.</strong>
+      </p>
+    </div>
+    <div class="problem-cards">
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(196,98,45,0.1)">🌍</div>
+        <div>
+          <h4 style="color:var(--terra)">Ökologisch</h4>
+          <p>Superfoods reisen 40 Tage aus Übersee – während Westafrika nur 14 Tage entfernt liegt. 60–70% mehr CO₂ pro kg.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(61,107,74,0.1)">👥</div>
+        <div>
+          <h4 style="color:var(--leaf)">Sozial</h4>
+          <p>Afrikanische Diaspora in Deutschland: hochqualifiziert, aber Expertise bleibt unsichtbar und ungenutzt.</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-icon" style="background:rgba(212,168,83,0.1)">🤝</div>
+        <div>
+          <h4 style="color:#a07830">Wirtschaftlich</h4>
+          <p>Die Bedik in Kédougou ernten das Beste – und verdienen durch Zwischenhändler das Wenigste.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOLUTION -->
+<section class="solution reveal" id="loesung">
+  <div class="section-tag">Die Lösung</div>
+  <h2 class="section-title" style="color:var(--white)">Future Roots verbindet<br>alle drei Probleme.</h2>
+  <div class="solution-grid">
+    <div class="solution-features">
+      <div class="feature-row">
+        <div class="feature-icon">🌿</div>
+        <div>
+          <h4>Direktimport aus Kédougou</h4>
+          <p>10–14 Tage Seeweg statt 40. Vollreife Ernte direkt von den Bedik-Bauernfamilien – kein Broker, kein Umweg.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎬</div>
+        <div>
+          <h4>3 Dokumentarfilme als Beweis</h4>
+          <p>Authentisches Storytelling das kein Wettbewerber kopieren kann. QR-Code auf jeder Verpackung führt zum Film.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🤝</div>
+        <div>
+          <h4>Diaspora-Partner als Micro-Unternehmer</h4>
+          <p>Senegalesische Diaspora in Deutschland sichert Qualität und Vertrieb – faire Bezahlung, echte Integration.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📚</div>
+        <div>
+          <h4>Wissenschaftliche Grundlage</h4>
+          <p>Dissertation über die Bedik-Gemeinschaft in Kédougou. Zehn Jahre persönliches Vertrauen als Fundament.</p>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🌱</div>
+        <div>
+          <h4>Zwei Produkte – eine Mission</h4>
+          <p>Jahr 1: Baobab-Pulver. Jahr 2: Fonio – das älteste Getreide Westafrikas. Glutenfrei, klimaresilient, einzigartig.</p>
+        </div>
+      </div>
+    </div>
+    <div class="solution-right">
+      <div class="solution-quote-box">
+        <div class="big-quote">"</div>
+        <p class="solution-quote-text">
+          Kein Wettbewerber auf der Welt hat das, was Future Roots mitbringt:
+          eine Dissertation über die Bedik, drei Dokumentarfilme und
+          zehn Jahre Migrationsarbeit als Fundament des Diaspora-Modells.
+          Unsere Lieferkette ist kein Vertrag –
+          sie ist ein Jahrzehnt persönlichen Vertrauens.
+        </p>
+        <div class="solution-quote-author">Future Roots – Gründerin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODEL -->
+<section class="model reveal" id="modell">
+  <div class="section-tag">Geschäftsmodell</div>
+  <h2 class="section-title">Drei Einnahmesäulen.<br>Ein faires System.</h2>
+  <div class="model-grid">
+    <div class="model-card c1">
+      <div class="model-num">01</div>
+      <h3>B2B Großhandel</h3>
+      <div class="phase">Jahr 1 – Priorität</div>
+      <p>Bioläden, Reformhäuser und Gastronomie mit Nachhaltigkeitsfokus. Jeder B2B-Kunde erhält ein fertiges Marketing-Paket mit Film, Texten und QR-Code.</p>
+      <span class="model-margin">Marge 28–35%</span>
+    </div>
+    <div class="model-card c2">
+      <div class="model-num">02</div>
+      <h3>D2C Online-Shop</h3>
+      <div class="phase">Jahr 1–2 – Aufbau</div>
+      <p>Abo-Modell, Probierboxen und exklusiver Dokumentarfilm-Zugang für Premium-Kunden. Community-Aufbau über Storytelling und Social Media.</p>
+      <span class="model-margin">Marge 45–55%</span>
+    </div>
+    <div class="model-card c3">
+      <div class="model-num">03</div>
+      <h3>Impact-Lizenz</h3>
+      <div class="phase">Ab Jahr 3</div>
+      <p>Das Diaspora-Netzwerk als Dienstleistung für andere Unternehmen. Future Roots wird zur Blaupause für faire afrikanisch-europäische Handelsmodelle.</p>
+      <span class="model-margin">Marge 60–70%</span>
+    </div>
+  </div>
+</section>
+
+<!-- SDGs -->
+<section class="sdgs reveal">
+  <div class="section-tag">Nachhaltigkeitsziele</div>
+  <h2 class="section-title" style="color:var(--white)">Drei SDGs.<br>Ein Modell.</h2>
+  <div class="sdg-row">
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 8</div>
+      <h4>Menschenwürdige Arbeit</h4>
+      <p>Faire Preise für Bedik-Bauern und senegalesische Diaspora-Partner als Micro-Unternehmer in Deutschland.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 10</div>
+      <h4>Weniger Ungleichheiten</h4>
+      <p>Wirtschaftliche Integration von Menschen, die der Arbeitsmarkt übersieht – auf beiden Seiten des Ozeans.</p>
+    </div>
+    <div class="sdg-card">
+      <div class="sdg-num">SDG 12</div>
+      <h4>Nachhaltiger Konsum</h4>
+      <p>Kürzester Transportweg aller Anbieter: 10–14 Tage statt 40. 60–70% weniger CO₂ pro Kilogramm.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story reveal" id="story">
+  <div class="story-inner">
+    <div class="section-tag">Unsere Geschichte</div>
+    <h2 class="section-title">Mehr als ein Unternehmen.<br>Eine Mission.</h2>
+    <p class="story-text">
+      Ich bin nicht als Händlerin nach Kédougou gefahren.
+      Ich bin als Forscherin gegangen – und habe geblieben,
+      weil <strong>die Geschichte der Bedik erzählt werden muss.</strong>
+    </p>
+    <div class="story-highlight">
+      <p>
+        „Ich habe meine Dissertation über die Bedik in Kédougou geschrieben,
+        drei Dokumentarfilme über ihre Kultur gedreht und zehn Jahre lang
+        Menschen begleitet, deren Expertise niemand sah.
+        Future Roots ist meine Antwort auf beide Ungerechtigkeiten."
+      </p>
+    </div>
+    <p class="story-text">
+      Diese Verbindung – Forschung, Film, Migrationsarbeit – ist kein Zufall.
+      Sie ist das Fundament. <strong>Kein Wettbewerber kann das kopieren.</strong>
+    </p>
+    <a href="#kontakt" class="btn-secondary" style="margin-top:1rem">Ins Gespräch kommen →</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal" id="kontakt">
+  <div class="section-tag">Kontakt</div>
+  <h2 class="section-title">
+    Bereit für<br>
+    <em>Beweisen, nicht träumen?</em>
+  </h2>
+  <p class="cta-sub">
+    Wir suchen B2B-Partner, Impact-Investoren und Menschen,
+    die gemeinsam beweisen wollen, dass Würde ein Geschäftsmodell ist.
+  </p>
+  <a href="mailto:hello@future-roots.de" class="btn-primary">hello@future-roots.de</a>
+  <div class="contact-info">
+    <div class="contact-item">
+      <div class="label">Startup</div>
+      <div class="value">Future Roots</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Produkte</div>
+      <div class="value">Baobab & Fonio</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Herkunft</div>
+      <div class="value">Kédougou, Senegal</div>
+    </div>
+    <div class="contact-item">
+      <div class="label">Markt</div>
+      <div class="value">Deutschland</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Future Roots</div>
+  <p>Baobab & Fonio direkt aus Kédougou, Senegal</p>
+  <p>© 2026 Future Roots</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.style.opacity = link.getAttribute('href') === '#' + current ? '1' : '0.7';
+      link.style.color = link.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+</script>
 </body>
 </html>
